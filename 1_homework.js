@@ -20,7 +20,7 @@ const recursivelyAdd = (array) => {
 const inputArray = argv.slice(2)[0]
 
 try {
-    let array = JSON.parse(inputArray);
+    const array = JSON.parse(inputArray);
     const result = recursivelyAdd(array);
     console.log(`sum of your array is ${result}`);
   } catch (e) {
