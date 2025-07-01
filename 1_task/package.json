@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_basic_architecture",
+  "version": "1.0.0",
+  "description": "ДЗ №1. Node.js: архітектура, завдання та основні концепції",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "@types/node": "^24.0.4",
+    "eslint": "^9.30.0",
+    "globals": "^16.2.0"
+  }
+}
