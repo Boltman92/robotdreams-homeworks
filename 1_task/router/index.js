@@ -1,13 +1,5 @@
 import { handle } from "../controllers/habits.controller.js";
 
-// enum Command {
-//     add = 'add',
-//     list = 'list',
-//     done = 'done',
-//     status = 'status',
-//     delete = 'delete',
-//     update = 'update'
-// }
 
 export class Router {
   constructor(command, instructions) {

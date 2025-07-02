@@ -12,10 +12,6 @@ export async function getAll() {
   return read();
 }
 
-// export async function getById(id) {
-//   return (await read()).find((u) => u.id === id);
-// }
-
 export async function create(payload) {
   const db = await read();
   const habit = { id: Date.now().toString(), ...payload };
