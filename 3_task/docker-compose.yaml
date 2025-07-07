@@ -1,0 +1,36 @@
+services:
+  redis-server:
+    build: ./redis-server
+    expose: ["4000"]
+    networks: [internal]
+
+  kv-server:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: ./kv-server/Dockerfile.kv
+    depends_on:
+      - redis-server
+    environment:
+      REDIS_URL: http://redis-like:4000
+    ports:
+      - "3000:3000"
+    command: sh -c "echo 'Waiting 5s for Redis...' && sleep 5 && node dist/index.js"
+
+  kv-server-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: ./kv-server/Dockerfile.kv.dev
+    depends_on:
+      - redis-server
+    environment:
+      REDIS_URL: http://redis-like:4000
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./kv-server:/app
+    command: sh -c "echo 'Waiting 5s for Redis...' && sleep 5 && npx nodemon src/index.js"
+
+networks:
+  internal:

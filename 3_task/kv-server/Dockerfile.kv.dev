@@ -1,0 +1,14 @@
+# .Dockerfile.kv.dev
+
+FROM node:18
+
+WORKDIR /app
+
+COPY ../kv-server/package*.json ./
+RUN npm install
+
+COPY ./kv-server .
+
+EXPOSE 3000
+
+CMD ["npx", "nodemon", "--watch", "src", "src/index.js"]
