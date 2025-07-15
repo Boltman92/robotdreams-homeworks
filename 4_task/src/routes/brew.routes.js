@@ -16,11 +16,11 @@ const paramsSchema = z.object({
   id: z.string().describe("Brew ID"),
 });
 
-router.get("/api/brew", ctl("index"));
+router.get("/brew", ctl("index"));
 registry.registerPath({
   method: "get",
   path: "/api/brew",
-  tags: ["Brew"],
+  tags: ["Brews"],
   responses: {
     200: {
       description: "Array of brews",
@@ -29,11 +29,11 @@ registry.registerPath({
   },
 });
 
-router.get("/api/brew/:id", validateParams(paramsSchema), ctl("show"));
+router.get("/brew/:id", validateParams(paramsSchema), ctl("show"));
 registry.registerPath({
   method: "get",
   path: "/api/brew/{id}",
-  tags: ["Brew"],
+  tags: ["Brews"],
   request: { params: paramsSchema }, // опис path-param
   responses: {
     200: {
@@ -44,11 +44,11 @@ registry.registerPath({
   },
 });
 
-router.post("/api/brew", validate(BrewDTO), asyncHandler(ctl("create")));
+router.post("/brew", validate(BrewDTO), asyncHandler(ctl("create")));
 registry.registerPath({
   method: "post",
   path: "/api/brew",
-  tags: ["Brew"],
+  tags: ["Brews"],
   request: {
     body: {
       required: true,
@@ -65,7 +65,7 @@ registry.registerPath({
 });
 
 router.put(
-  "/api/brew/:id",
+  "/brew/:id",
   validateParams(paramsSchema),
   validate(BrewDTO),
   asyncHandler(ctl("update"))
@@ -73,7 +73,7 @@ router.put(
 registry.registerPath({
   method: "put",
   path: "/api/brew/{id}",
-  tags: ["Brew"],
+  tags: ["Brews"],
   request: {
     params: paramsSchema,
     body: {
@@ -91,11 +91,11 @@ registry.registerPath({
   },
 });
 
-router.delete("/api/brew/:id", asyncHandler(ctl("remove")));
+router.delete("/brew/:id", asyncHandler(ctl("remove")));
 registry.registerPath({
   method: "delete",
   path: "/api/brew/{id}",
-  tags: ["Brew"],
+  tags: ["Brews"],
   request: { params: paramsSchema },
   responses: {
     204: { description: "Deleted" },

@@ -6,8 +6,7 @@ export const BrewDTO = z.object({
   method: z.literal(["v60", "aeropress", "chemex", "espresso"]),
   rating: z.number().gt(0).lt(6),
   notes: z.string().max(200),
-  brewedAt: z.iso.date(),
+  brewedAt: z.string().date(),
 });
 
-/* реєструємо схему */
 registry.register("Brew", BrewDTO);

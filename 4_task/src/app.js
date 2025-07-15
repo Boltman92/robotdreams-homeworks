@@ -24,10 +24,10 @@ export function createApp() {
   app.use(compression());
 
   app.post(
-    "api/brews",
+    "/api/brews",
     rateLimit({
       windowMs: 60_000,
-      max: 100,
+      max: 10,
       standardHeaders: true, // RateLimit-* для клієнта
       legacyHeaders: false,
     })
@@ -43,12 +43,12 @@ export function createApp() {
 
   app.use(scopePerRequest(container));
 
+  app.use("/api", brewRouter);
+
   if (config.env === "development") {
     app.use("/docs", swaggerUi.serve, swaggerUi.setup(generateSpecs()));
     console.log(`Swagger docs → ${config.baseUrl}/docs`);
   }
-
-  app.use("/api", brewRouter);
 
   app.use(notFound);
 

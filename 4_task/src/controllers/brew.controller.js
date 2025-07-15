@@ -5,7 +5,9 @@ export class BrewController {
     this.brewService = brewService;
   }
 
-  index = (_req, res) => res.json(this.brewService.getAll());
+  index = (_req, res) => {
+    res.json(this.brewService.getAll());
+  };
 
   show = (req, res) => res.json(this.brewService.getOne(req.params.id));
 
